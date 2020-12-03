@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
+    <title>基本情報　過去問題</title>
+</head>
+
+<body bgcolor="#EFEFEF">
+    <div id="app">
+        <p>インターネット接続用ルータのNAT機能の説明として，適切なものはどれか。</p>
+        <router-link to="/answer1">ア</router-link>
+        　プライベートIPアドレスとグローバルIPアドレスを相互に変換する機能である。<br>
+        <router-link to="/answer2">イ</router-link>
+        インターネットヘのアクセスをキャッシュしておくことによって，その後に同じIPアドレスのサイトヘアクセスする場合，表示を高速化できる機能である。<br>
+        <router-link to="/answer3">ウ</router-link>
+        　通信中のIPパケットから特定のビットパターンを検出する機能である。<br>
+        <router-link to="/answer4">エ</router-link>　特定の端末あてのIPパケットだけを通過させる機能である。<br>
+        <h3>
+            <transition>
+                <router-view></router-view>
+            </transition>
+        </h3>
+        <p>
+            <router-view name="c"></router-view>
+        </p>
+    </div>
+    <script src="router.js"></script>
+    <style>
+        .v-enter {
+            opacity: 0;
+        }
+
+        .v-enter-to {
+            opacity: 1;
+        }
+
+        .v-enter-active {
+            transition: all 500ms;
+        }
+    </style>
+</body>
+
+</html>
