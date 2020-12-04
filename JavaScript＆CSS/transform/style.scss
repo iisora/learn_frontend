@@ -1,0 +1,22 @@
+.rect {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  background-color: orangered;
+  /* 物体の位置 */
+  // transform: translate(50px, 50px);
+  /* 物体の角度 */
+  // transform: rotate(-30deg);
+  /* 第一引数:X軸、第二引数:Y軸  物体を変形させる */
+  // transform: skew(-30deg, -30deg);
+  // transform: skewX(-30deg);
+  // transform: skewY(-30deg);
+  // transform: skew(-30deg, -30deg);
+  /* 物体の大きさ 横、高さ */
+  // transform: scale(1.1, 1.1);
+  transform: translateX(50px) scaleY(2);
+  /* 始点(物体) */
+  transform-origin: bottom left;
+  /* 始点(空間) */
+  transform-origin: -20px -20px;
+}

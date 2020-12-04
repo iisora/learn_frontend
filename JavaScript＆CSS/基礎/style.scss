@@ -1,0 +1,59 @@
+/* Sassファイルの変更がcssに上書きされるためcssは修正しない */
+
+$cwhite: white;
+$cblack: black;
+
+
+#container{
+    text-align: center;
+    /* アンパサンドを省略できる */
+    .btn{
+
+    }
+
+}
+
+.btn{
+    text-align: center;
+}
+#container{
+
+    background-color: $cwhite;
+    color: $cblack;
+    /* 枠線　太さ　実線　色(default:黒) */
+    border: 1px solid $cblack;
+    /* 余白(枠の内側)　引数は時計回りで↑→↓⇦ */
+    /* padding: 10px 40px 10px 40px; */
+    /* 引数2つだけなら1が上下、2が左右を表す */
+    padding: 10px 40px;
+    /* 余白(枠の外側) */
+    margin: 50px 0px;
+    /* 文字の太さ(default:500) */
+    font-weight: 600;
+    /* カーソルの表示変更 */
+    cursor: pointer;
+    /* マウスをホバーした際に○秒かけてホバーする */
+    /* transition: all 2s; */
+    /* トランジションをかけたい属性は限定できる */
+    transition: all 300ms;
+
+    /* 半角スペース開けたくない場合は＆省略できない */
+    &:hover {
+        background-color: $cblack;
+        color: $cwhite;
+    }
+
+    &-cube{
+        background-color: $cblack;
+        & .inner{
+            background-color: $cblack;
+        }
+    }
+}
+
+/* 
+.btn:hover {
+    background-color: black;
+    color: white;
+}
+*/

@@ -1,0 +1,20 @@
+@charset "UTF-8";
+.rect {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  background-color: orangered;
+  /* 物体の位置 */
+  /* 物体の角度 */
+  /* 第一引数:X軸、第二引数:Y軸  物体を変形させる */
+  /* 物体の大きさ 横、高さ */
+  -webkit-transform: translateX(50px) scaleY(2);
+          transform: translateX(50px) scaleY(2);
+  /* 始点(物体) */
+  -webkit-transform-origin: bottom left;
+          transform-origin: bottom left;
+  /* 始点(空間) */
+  -webkit-transform-origin: -20px -20px;
+          transform-origin: -20px -20px;
+}
+/*# sourceMappingURL=style.css.map */
