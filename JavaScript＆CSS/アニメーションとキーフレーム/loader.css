@@ -1,0 +1,65 @@
+@charset "UTF-8";
+body {
+  text-align: center;
+}
+
+.rect {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  background-color: black;
+  -webkit-animation: sk-bouncedelay 1.4s;
+          animation: sk-bouncedelay 1.4s;
+  -webkit-animation-timing-function: ease;
+          animation-timing-function: ease;
+  /* アニメーションが始まるまでの遅延時間 */
+  -webkit-animation-delay: 3s;
+          animation-delay: 3s;
+  /* アニメーション繰り返し数 　infiniteは無限にループ */
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  /* アニメーションの順序　オルタネイトはこの場合from,to→to,fromのように折り返して行われる　*/
+  /* to,from→from, to */
+  animation-direction: alternate-reverse;
+  /* forwardsはアニメーションが終了した時点のCSSが適応されたまま残る bothは開始時点、終了時点どちらも残す */
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  /* アニメーションを途中で止める場合に使う */
+}
+
+.paused {
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
+}
+
+/* アニメーションの途中経過を詳細に設定したい場合は@Keyframesとanimationプロパティを使う 
+簡単なやつはtransitionで */
+@-webkit-keyframes sk-bouncedelay {
+  /* 0% = from */
+  from {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    background-color: green;
+  }
+  /* 100% = to */
+  to {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    background-color: red;
+  }
+}
+@keyframes sk-bouncedelay {
+  /* 0% = from */
+  from {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    background-color: green;
+  }
+  /* 100% = to */
+  to {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    background-color: red;
+  }
+}
+/*# sourceMappingURL=loader.css.map */

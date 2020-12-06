@@ -1,0 +1,40 @@
+$cBlack: black;
+
+.three-dot-spinner {
+    text-align: center;
+
+    & div {
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        background-color: $cBlack;
+        border-radius: 50%;
+        /* キー　アニメーションが終了する秒数 */
+        animation: sk-bouncedelay 1.4s infinite;
+    }
+
+    & .bounce1 {
+        /* -で設定すると他より速くなる */
+        animation-delay : -0.32s;
+    }
+
+    & .bounce2 {
+        animation-delay : -0.16s;
+    }
+}
+
+@keyframes sk-bouncedelay {
+    0% {
+        /* 大きさを変更　0は消える */
+        transform: scale(0);
+    }
+    40% {
+        transform: scale(1);
+    }
+    80% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(0);
+    }
+}

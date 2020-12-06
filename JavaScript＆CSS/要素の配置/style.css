@@ -1,0 +1,55 @@
+@charset "UTF-8";
+.parent {
+  background-color: #51dada;
+  height: 600px;
+  width: 100%;
+}
+
+.child {
+  background-color: orange;
+  width: 100px;
+  height: 100px;
+  font-weight: 600;
+  /* 親要素で指定した範囲を均等に満たす 
+  引数は比率なので、子要素は１：２：３　*/
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -ms-flex-preferred-size: 300px;
+      flex-basis: 300px;
+}
+
+.child.v1 {
+  /* 300pxの値を取り合って元の幅を超えてしまう場合は、サイズを妥協しあって均等になるが、
+  300pxの幅を必ず取りたいため、縮まないようにする
+  こうすることでchild1が300pxを確保した状態で、残りをchild2,child3で分け合う */
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+}
+
+.child.v2 {
+  background-color: palevioletred;
+  -webkit-box-flex: 2;
+      -ms-flex-positive: 2;
+          flex-grow: 2;
+}
+
+.child.v3 {
+  background-color: rebeccapurple;
+  -webkit-box-flex: 3;
+      -ms-flex-positive: 3;
+          flex-grow: 3;
+}
+
+/**
+ * 横方向のレイアウト
+ */
+/* インライン要素に対して */
+/* 文字間隔 */
+/* ブロック要素を中央揃え */
+/**
+ * 上下方向のレイアウト
+ */
+/* 重ねて揃えたい場合はこれを使う */
+/* 要素の上に要素を配置する(重ならない) */
+/*# sourceMappingURL=style.css.map */
