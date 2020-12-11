@@ -1,0 +1,49 @@
+$cBlack: black;
+
+.three-dot-spinner {
+  text-align: center;
+
+  & div {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background-color: $cBlack;
+    border-radius: 50%;
+    animation: sk-bouncedelay 1.4s infinite;
+
+    @for $i from 1 through 2 {
+      /* セレクターの箇所で変数を使用したい場合は#{}(インタープレイション)で変数を囲む */
+      &:nth-child(#{$i}) {
+        animation-delay: -0.32s / $i;
+        // background-image: url('/images/image#{$i}.png');
+      }
+  
+      // &:nth-child(2) {
+      //   animation-delay: -0.16s;
+      // }
+    }
+  }
+
+  // & .bounce1 {
+  //   animation-delay: -0.32s;
+  // }
+
+  // & .bounce2 {
+  //   animation-delay: -0.16s;
+  // }
+}
+
+@keyframes sk-bouncedelay {
+  0% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+  80% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(0);
+  }
+}

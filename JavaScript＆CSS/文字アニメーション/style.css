@@ -1,0 +1,140 @@
+@charset "UTF-8";
+body {
+  margin: 0;
+}
+
+html {
+  font-family: 'Oswald', sans-serif;
+  font-family: 'Roboto', sans-serif;
+}
+
+#container {
+  position: relative;
+  /* ビューポートのサイズを基準とした単位 */
+  /* ビューポート：ブラウザウインドウの広さ */
+  height: 100vh;
+  background-color: teal;
+}
+
+.animate-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  color: white;
+  opacity: 0;
+  /* 適応される前の大きさを1emとしたところの相対的な大きさなので2倍 */
+  font-size: 2em;
+}
+
+.animate-title.inview {
+  opacity: 1;
+  /* 上から少しずつフェードインしてくる感じにする */
+}
+
+.animate-title.inview .char {
+  /* 半角スペース空いてたら小要素の指定ということになる */
+  /* これがないとtransformが働かない */
+  /*  transformが働くのはinline要素以外なので(spanタグはinlineなのでダメ) */
+  display: inline-block;
+  -webkit-animation-name: kf-animate-chars;
+          animation-name: kf-animate-chars;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-timing-function: cubic-bezier(0.39, 1.57, 0.58, 1);
+          animation-timing-function: cubic-bezier(0.39, 1.57, 0.58, 1);
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  -webkit-animation-direction: normal;
+          animation-direction: normal;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+  /* 1文字ずつアニメーションする */
+  /* 1文字ずつアニメーションする */
+  /* 1文字ずつアニメーションする */
+  /* 1文字ずつアニメーションする */
+  /* 1文字ずつアニメーションする */
+  /* 1文字ずつアニメーションする */
+  /* 1文字ずつアニメーションする */
+  /* 1文字ずつアニメーションする */
+  /* 1文字ずつアニメーションする */
+}
+
+.animate-title.inview .char:nth-child(1) {
+  -webkit-animation-delay: 0.04s;
+          animation-delay: 0.04s;
+}
+
+.animate-title.inview .char:nth-child(2) {
+  -webkit-animation-delay: 0.08s;
+          animation-delay: 0.08s;
+}
+
+.animate-title.inview .char:nth-child(3) {
+  -webkit-animation-delay: 0.12s;
+          animation-delay: 0.12s;
+}
+
+.animate-title.inview .char:nth-child(4) {
+  -webkit-animation-delay: 0.16s;
+          animation-delay: 0.16s;
+}
+
+.animate-title.inview .char:nth-child(5) {
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s;
+}
+
+.animate-title.inview .char:nth-child(6) {
+  -webkit-animation-delay: 0.24s;
+          animation-delay: 0.24s;
+}
+
+.animate-title.inview .char:nth-child(7) {
+  -webkit-animation-delay: 0.28s;
+          animation-delay: 0.28s;
+}
+
+.animate-title.inview .char:nth-child(8) {
+  -webkit-animation-delay: 0.32s;
+          animation-delay: 0.32s;
+}
+
+.animate-title.inview .char:nth-child(9) {
+  -webkit-animation-delay: 0.36s;
+          animation-delay: 0.36s;
+}
+
+@-webkit-keyframes kf-animate-chars {
+  from {
+    /* 初期状態では透明で、上に50%ずれた状態になっている */
+    opacity: 0;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+  }
+  to {
+    opacity: 1;
+    /* 上にずれていたのが元の位置に戻るので上から降りてくるように見える */
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+@keyframes kf-animate-chars {
+  from {
+    /* 初期状態では透明で、上に50%ずれた状態になっている */
+    opacity: 0;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+  }
+  to {
+    opacity: 1;
+    /* 上にずれていたのが元の位置に戻るので上から降りてくるように見える */
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+/*# sourceMappingURL=style.css.map */

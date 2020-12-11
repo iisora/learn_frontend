@@ -1,0 +1,62 @@
+a {
+    color: orange;
+
+    /* 訪問した後 */
+    &:visited {
+        color: blue;
+    }
+    /* ホバーしたタイミング */
+    &:hover {
+        color: red;
+    }
+    /* 最後にフォーカスが当たった場所 */
+    &:focus {
+        color: green;
+    }
+    /* クリックしたタイミング */
+    &:active {
+        color: purple;
+    }
+}
+
+div {
+    & span {
+        color: olive;
+
+        /* nth-of-childと違ってspanタグであることも考慮してプロパティを適応する */
+        /* nth-of-childはあくまでdivタグの中の１番目、２番目..という風に順番で適応する */
+        &:nth-of-type(1) {
+            color: purple;
+        }
+        &:nth-of-type(2) {
+            color: green;
+        }
+        &:nth-of-type(3) {
+            color: blue;
+        }
+
+        /* 引数に設定したclassの属性値に一致しないセレクターを定義する */
+        &:not(.cls) {
+            color: purple;
+        }
+
+        /* 最初 */
+        &:first-of-type {
+        // &*:first-child {
+            color: purple;
+        }
+        /* 最後 */
+        &:last-of-type {
+            color: yellow;
+        }
+
+
+    }
+    /* 引数の数字に一致する値のみに指定したプロパティを適応させる */
+    /* 同じような要素が並んでる場合に使う時がある */
+    // & span:nth-child(3) {
+    /* 偶数:2n or even ,奇数:2n+1 or odd */
+    // & span:nth-child(2n) {
+    //     color: purple;
+    // }
+}
