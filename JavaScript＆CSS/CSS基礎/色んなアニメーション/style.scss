@@ -1,0 +1,120 @@
+@import 'mixin';
+
+$cBlack: black;
+
+#container {
+    display: flex;
+    justify-content: center;
+
+    & > div {
+        // flex-basis: 300px;
+    }
+}
+
+.spinner {
+    display: inline-block;
+    background-color: $cBlack;
+    width: 50px;
+    height: 50px;
+    margin: 100px auto;
+    /* 与えた引数のmixinのデフォ値を上書きできる */
+    @include animation(
+        $name: kururikururi,
+        $duration: 1.2s,
+        $iteration-count: infinite,
+        $timing-function: ease-in-out
+    );
+}
+
+@keyframes kururikururi {
+    0% {
+        /* perspective: 3D変形の遠近効果を調節するプロパティ */
+        transform: perspective(200px) rotateX(0);
+    }
+    50% {
+        /* 200を指定すると遠近感が極端になる　*/
+        transform: perspective(200px) rotateX(180deg);
+    }
+    100% {
+        transform: perspective(200px) rotateZ(180deg)
+    }
+}
+
+.double-spinner {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    margin: 100px auto;
+    & div {
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: $cBlack;
+        border-radius: 50%;
+        opacity: 0.6;
+        @include animation(
+            $name: circle-delay,
+            $duration: 2s,
+            $iteration-count: infinite,
+            $timing-function: ease-in-out
+        );
+
+        &:nth-child(2) {
+            animation-delay: -0.6s;
+        }
+
+    }
+}
+
+@keyframes circle-delay {
+    0%, 
+    100% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(1);
+    }
+}
+
+.rect-spinner {
+    margin: 110px auto;
+    width: 50px;
+    height: 40px;
+    /* display:inline-blockとセット */
+    letter-spacing: -2px;
+    text-align: center;
+    & div {
+        background-color: $cBlack;
+        height: 100%;
+        width: 6px;
+        display: inline-block;
+        @include animation(
+            $name: stick-delay,
+            $duration: 1.4s,
+            $iteration-count: infinite,
+            $timing-function: ease-in-out
+        );
+
+        @for $i from 1 through 5 {
+            &:nth-child(#{$i}) {
+                /* なめらかにしたいならこんな感じ */
+                animation-delay: -1.4s + $i * 0.1s;
+            }
+        }
+    }
+}
+
+@keyframes stick-delay {
+    0%,
+    40%,
+    100% {
+        /* scaleY : 縦の長さだけ */
+        transform: scaleY(0.4);
+    }
+    20% {
+        transform: scaleY(1);
+    }
+}
