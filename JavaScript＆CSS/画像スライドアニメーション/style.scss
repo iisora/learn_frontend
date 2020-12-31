@@ -1,0 +1,120 @@
+@import 'mixin';
+
+
+img {
+    max-width: 100%;
+    /* 指定要素を下端揃えにする。*/
+    vertical-align: bottom;
+}
+
+.cover-slide {
+    position: relative;
+    /* .img-zoom:hover　の処理の時、はみ出した枠消す */
+    overflow: hidden;
+    /* viewport height */
+    margin-bottom: 80vh;
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #eaebe6;
+        z-index: 2;
+        opacity: 0;
+    }
+
+    &.inview {
+        &::after {
+            opacity: 1;
+            @include animation(
+                $name: slide-img-cover,
+                $duration: 1.6s,
+                $timing-function: ease-in-out
+            );
+        }
+    }
+}
+
+@keyframes slide-img-cover {
+    0% {
+        transform-origin: left;
+        transform: scaleX(0);
+    }
+    50% {
+        transform-origin: left;
+        transform: scaleX(1);
+    }
+    50.1% {
+        transform-origin: right;
+        transform: scaleX(1);
+    }
+    100% {
+        transform-origin: right;
+        transform: scaleX(0);
+    }
+}
+
+.img-zoom {
+    opacity: 0;
+
+    .inview & {
+        opacity: 1;
+        transition: transform 0.3s ease;
+        @include animation(
+            $name: vanish-img,
+            $duration: 1.6s,
+            $timing-function: ease-in-out,
+            $fill-mode: none
+        );
+    }
+
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes vanish-img {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0;
+    }
+    50.1% {
+        transform: scale(1.5);
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+
+}
+
+.hover-darken {
+    /* カーソルを当てて暗くなっている時もスライドアニメーションさせる */
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+        /* 要素に対するホバーやクリックなどの
+        マウスイベントをキャンセルできる */
+        pointer-events: none;
+        transition: background-color 0.3s ease;
+        @include animation(
+            $name: vanish-img,
+            $duratioon: 1.6s,
+            $timing-function: ease-in-out,
+            $fill-mode: none
+        );
+    }
+    &:hover::before {
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+}
