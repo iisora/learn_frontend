@@ -1,0 +1,183 @@
+@import 'css/_sanitize';
+
+body {
+    // background-color: #f0f0f0;
+    background-color: teal;
+    padding: 10px;
+    font-size: 14px;
+    color: #666;
+}
+
+.container {
+    // width: 800px;
+    /* レスポンシブ対応：ウィンドウ幅に要素が対応する */
+    max-width: 800px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+    /* 左右をウィンドウサイズに合わせた一定のマージンにする */
+    margin: 0 auto;
+}
+
+header {
+    background-color: #422814;
+    padding: 10px;
+    color: #fff;
+
+    & h1 {
+        margin: 0;
+        font-size: 24px;
+        font-weight: normal;
+        // text-align: center;
+        display: flex;
+        justify-content: center;
+        font-family: 'Sriracha', cursive;
+    }
+}
+
+.description {
+    clear: left;
+    // width: 100%;
+    // max-width: 150px;
+    // position: relative;
+    // &::before {
+    //     content: '';
+    //     display: block;
+    //     padding-top: 100%;
+    // }
+
+    & img {
+        // position: absolute;
+        // top: 0;
+        float: left;
+        /* 1:上下左右/2:[上下][左右]/3:[上][左右][下]/4:[上][右][下][左]（※時計回り) */
+        margin: 0 10px 10px 0;
+        // margin: auto;
+        width: 200px;
+        // max-width: 100%;
+        height: 200px;
+        /* 縦横比を維持したままトリミングできるプロパティ */
+        // object-fit: cover;
+        transition: opacity 1s ease 0s;
+
+        &:hover {
+            opacity: .5;
+        }
+    }
+}
+
+.infomation {
+    position: relative;
+    & h1 {
+        font-size: 18px;
+        /* 時計回り */
+        margin: 0 10px 10px 0;
+        /* floatで回り込ませて、回り込ませたくない要素はclearで解除してあげる */
+        float: left;
+    }
+
+    & .type {
+        position: absolute;
+        top: -9px;
+        display: inline-block;
+        background-color: #E35A4D;
+        padding: 2px 5px;
+        font-size: 80%;
+        color: #fff;
+    }
+}
+
+.content {
+    background-color: #fff;
+    padding: 20px;
+}
+
+.feature {
+    /* 下20px */
+    margin: 0 0 20px;
+    // background-color: aquamarine;
+
+    & h2 {
+        /* 画像をfloatした時、みぎに寄せられた回り込みを解除する float×clearの連携 */
+        clear: left;
+        font-size: 100%;
+        font-weight: normal;
+        // margin: 0;
+        background-color:  #E6E4DD;
+        padding: 5px 10px;
+    }
+
+    & ol {
+        padding: 0;
+        margin: 0;
+        /* 引数2:life-style-position */
+        // list-style: decimal inside;
+        /* マーカーがリスト内容の領域の内側に表示される */
+        /* デフォルトがoutsideでoutsideはリストの文字の左側が端として認識される　*/
+        list-style-position: inside;
+
+        // & > li {
+        //     border-bottom: 1px solid #ccc;
+        //     /* 下線の長さ */
+        //     width: 50%;
+        //     padding: 5px 10px;
+        //     float: left;
+        // }
+    } 
+
+    & li {
+        border-bottom: 1px solid #ccc;
+        /* 下線の長さ */
+        width: 50%;
+        float: left;
+        padding: 5px 10px;
+    }
+}
+
+.clearfix:after {
+    content:" ";
+    display:block;
+    clear:both;
+}
+
+
+footer {
+    text-align: center;
+    font-size: 80%;
+    background-color: gray;
+    color: black;
+}
+
+/* メディアクエリ */
+@media screen and (max-width: 600px) {
+    .description{
+        & img {
+            /* 画像はインラインなので、marginを効かせるためにblockにする */
+            display: block;
+            float: none;
+            margin: 0 auto;
+        }
+    }
+
+    header {
+        padding: 5px;
+
+        & h1 {
+            font-size: 12px;
+        }
+    }
+
+    .description {
+        & h1 {
+            font-size: 14px;
+        }
+    }
+
+    .feature {
+        & li {
+            float: none;
+            /* 下線の長さは親要素の widthプロパティの設定を継承します。 */
+            width: inherit;
+        }
+    }
+}
+
+
