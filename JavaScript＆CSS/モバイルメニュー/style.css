@@ -1,0 +1,175 @@
+@charset "UTF-8";
+#container {
+  position: relative;
+  background-color: teal;
+  height: 100vh;
+  /* containerとmenuが同列にあるので、z-indexを
+    menuより高くすることによってmenuの文字列が背面に設置される */
+  z-index: 2;
+  /* 全体のアニメーションの速度 */
+  transition: all 0.5s;
+}
+
+.header {
+  background-color: white;
+  height: 100px;
+  /* flex-box */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+body {
+  margin: 0;
+}
+
+.mobile-menu {
+  /* 固定ポジ */
+  position: fixed;
+  /* 右寄せ */
+  right: 0;
+  /* 上から60px */
+  top: 60px;
+  width: 300px;
+  /* BEM(Block Element Modifier)
+    Block => でかい括り
+    Element => でかい括りの中にいる要素
+    Modifier => 上記2つの変化球
+    の3つに分けて考えていくことでCSSを設計･命名していく手法.
+    */
+}
+
+.mobile-menu__btn {
+  /* 初期ボタン削除3セット */
+  background-color: unset;
+  border: none;
+  outline: none !important;
+  cursor: pointer;
+}
+
+.mobile-menu__btn > span {
+  background-color: black;
+  width: 35px;
+  height: 2px;
+  /* 横いっぱいに広がるので、横並びにならない */
+  display: block;
+  margin-bottom: 9px;
+  transition: transform 0.7s;
+}
+
+.mobile-menu__btn > span:last-child {
+  margin-bottom: 0;
+}
+
+.mobile-menu__cover {
+  /* #cotainerを見に行く */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  /* 要素を見えなくする opacityは透明度を変えているだけなので
+        そこに要素は存在するが、hiddenは要素自体を消す
+        状態の遷移でopacityを使うので、アニメーションのために
+        opacityも併せて使用する */
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 1s;
+  cursor: pointer;
+}
+
+.mobile-menu__main {
+  padding: 0;
+  /* 以下2つを親要素に定義してあげることにより、
+        それ以下の要素にアニメーションを付与する */
+  /* liで3Dアニメーションを使いたいので親要素で宣言する */
+  transform-style: preserve-3d;
+  perspective: 2000px;
+}
+
+.mobile-menu__item {
+  /* listの先頭につく黒マルを無くす */
+  list-style: none;
+  display: block;
+  /* Z軸方向(奥行き)に-1000px */
+  transform: translate3d(0, 0, -1000px);
+  /* [上下] [左右] */
+  padding: 0 40px;
+  margin-top: 30px;
+  transition: transform 0.3s, opacity 0.2s;
+  opacity: 0;
+}
+
+.mobile-menu__link {
+  /* 左右いっぱいいっぱいに広がる */
+  display: block;
+  /* 下線を非表示にする */
+  text-decoration: none;
+  color: black;
+}
+
+/* Modifier */
+.menu-open #container {
+  /* 左下にcontainerの位置をずらす*/
+  transform: translate(-300px, 60px);
+  /* 水平方向の距離 垂直方向の距離 ぼかし距離 広がり距離 影の色 */
+  box-shadow: 0 8px 40px -10px rgba(0, 0, 0, 0.8);
+}
+
+.menu-open .mobile-menu__cover {
+  opacity: 1;
+  visibility: visible;
+}
+
+.menu-open .mobile-menu__item {
+  transform: none;
+  opacity: 1;
+  /* メニューの表示時、遅延のアニメーションがあるので
+            for文で付与する */
+}
+
+.menu-open .mobile-menu__item:nth-child(1) {
+  transition-delay: 0.07s;
+}
+
+.menu-open .mobile-menu__item:nth-child(2) {
+  transition-delay: 0.14s;
+}
+
+.menu-open .mobile-menu__item:nth-child(3) {
+  transition-delay: 0.21s;
+}
+
+.menu-open .mobile-menu__btn > span {
+  background-color: black;
+}
+
+.menu-open .mobile-menu__btn > span:nth-child(1) {
+  transition-delay: 70ms;
+  transform: translateY(11px) rotate(135deg);
+}
+
+.menu-open .mobile-menu__btn > span:nth-child(2) {
+  transition-delay: 0s;
+  transform: translateX(-18px) scaleX(0);
+}
+
+.menu-open .mobile-menu__btn > span:nth-child(3) {
+  transition-delay: 140ms;
+  transform: translateY(-11px) rotate(-135deg);
+}
+
+.main-title {
+  font-weight: 600;
+  font-size: 25px;
+}
+
+.sub-title {
+  /* 要素が横いっぱいに広がりので、横並びを解除できる */
+  display: block;
+  font-size: 14px;
+  color: #535353;
+}
+/*# sourceMappingURL=style.css.map */
