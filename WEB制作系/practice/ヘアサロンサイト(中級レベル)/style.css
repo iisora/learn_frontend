@@ -287,5 +287,84 @@ div#left dl dd:last-child {
     margin-bottom: 0;
 }
 
+/* ========================================
+    コンタクトページ
+========================================= */
+
+p#contact_text {
+    color: #927e7a;
+    font-size: 12px;
+    line-height: 18px;
+    background-color: #FEEFEA;
+    /* 上下左右 */
+    padding: 10px 10px;
+    /* padding-left: 12px; */
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+td.form_title {
+    /* 高さ22px + マージン */
+    height: 32px;
+    /* 項目名の先頭からテキストボックスまで */
+    width: 131px;
+    color: #734339;
+    font-size: 15px;
+    /* 上端揃え */
+    vertical-align: top;
+}
+
+/* labelのデフォルトのfont-weightが優先されるので
+label内で指定する必要がある */
+td.form_title label {
+    font-weight: bold;
+}
+
+td.form_contents {
+    color: #a6a6a6;
+    font-size: 13px;
+}
+
+td.form_contents input#form_name,
+td.form_contents input#form_tel {
+    width: 421px;
+    height: 22px;
+}
+
+td.form_contents input.form_time {
+    width: 47px;
+    height: 22px;
+    margin-right: 5px;
+    display: inline-block;
+}
+
+td.form_contents textarea {
+    width: 421px;
+    height: 83px;
+    border:  1px solid #a6a6a6;
+}
+
+p#submit {
+    text-align: right;
+}
+
+p#submit input {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #315A36;
+    width: 135px;
+    height: 40px;
+    border: none;
+}
+
+p#submit input:hover {
+    cursor: pointer;
+    /* ちょっと薄くする */
+    opacity: 0.8;
+}
+
+
+
 
 
