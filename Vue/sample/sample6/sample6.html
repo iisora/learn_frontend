@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+
+<div id="app">
+    <!-- <p>合計 {{ sum.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1,') }}円</p> -->
+    <!-- パイプ：sumの値がnumberWithDelimiterの引数として渡り、filterの戻り値が返される -->
+    <p>合計 {{ sum | numberWithDelimiter }}円</p>
+</div>
+</html>
+<script src="main.js"></script>
