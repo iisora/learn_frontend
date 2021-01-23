@@ -39,20 +39,37 @@
 // コンポーネントのmethodsにストアのアクションメソッドを組み込む役割
 import { mapActions } from "vuex";
 export default {
+  created () {
+    // routeのパラメータにaddress_idが含まれているかチェック($route.paramsでパスに含まれているパラメータにアクセス)
+      if (!this.$route.params.address_id) return
+
+      // 引数にaddress_idwp渡すことで該当する連絡先を取得する
+      const address = this.$store.getters.getAddressById(this.$route.params.address_id)
+      if (address) {
+          this.address = address
+      } else {
+        // 取得できなかった場合は一覧に遷移する
+          this.$router.push({ name: 'addresses'})
+      }
+  },
   data() {
     return {
       address: {},
     };
   },
   methods: {
-    submit() {
-      this.addAddress(this.address);
+    submit() { //新規追加と更新処理を分ける
+      if (this.$route.params.address_id) {
+        this.updateAddress({ id: this.$route.params.address_id, address: this.address })
+      } else {
+        this.addAddress(this.address);
+      }
       // $routerでrouterにアクセスできる
       this.$router.push({ name: "addresses" });
       this.address = {};
     },
     // ...は分割代入の構文 メソッドとしてaddAddressを呼び出せるようになる
-    ...mapActions(["addAddress"]),
+    ...mapActions(["addAddress", "updateAddress"]),
   },
 };
 </script>

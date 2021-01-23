@@ -13,11 +13,13 @@
     <v-list class="pa-1">
       <v-list-tile avatar>
         <v-list-tile-avatar>
-          <img src="../images/image1.jpeg" />
+          <!-- <img src="../images/image1.jpeg" /> -->
+          <img v-if="photoURL" :src="photoURL" />
         </v-list-tile-avatar>
 
         <v-list-tile-content>
-          <v-list-tile-title>iisora</v-list-tile-title>
+          <!-- <v-list-tile-title>iisora</v-list-tile-title> -->
+          <v-list-tile-title>{{ userName }}</v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
     </v-list>
@@ -41,6 +43,8 @@
 </template>
 
 <script>
+// mapActionsのgetter版
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -48,10 +52,14 @@ export default {
       //   drawer: false,
       //メニューの情報
       items: [
-        { title: "ホーム", icon: "home", link: { name: "home" } },
+        // { title: "ホーム", icon: "home", link: { name: "home" } },
         { title: "連絡先一覧", icon: "list", link: { name: "addresses" } },
       ],
     };
+  },
+  // actionと違ってcomputedに組み込むことで、そのコンポーネントの一つの戻り値としてgetterの値を参照できる
+  computed: {
+    ...mapGetters(["userName", "photoURL"]),
   },
 };
 </script>
