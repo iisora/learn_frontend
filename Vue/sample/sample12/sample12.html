@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+<link rel="stylesheet" href="style.css">
+
+<div id="app">
+  <h2>Todos:</h2>
+  <ol>
+    <!-- ここではtodo.textをキーにしているが、重複する可能性があるので通常はDBに割り当てられた一意なキーを指定するのが一般的 -->
+    <!-- キーを割り当てることによってリストの並び替えの際のDOMの操作の効率が良くなる -->
+    <li v-for="todo in todos" :key="todo.text">
+      <label>
+        <!-- <input
+          type="checkbox"
+          v-on:change="toggle(todo)"
+          v-bind:checked="todo.done"
+        /> -->
+        <input type="checkbox" @change="toggle(todo)" :checked="todo.done">
+        <!-- todoが完了済みの場合は -->
+        <del v-if="todo.done"> {{ todo.text }} </del>
+        <span v-else> {{ todo.text }} </span>
+      </label>
+    </li>
+  </ol>
+</div>
+</html>
+<script src="main.js"></script>

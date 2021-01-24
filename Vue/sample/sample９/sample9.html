@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+
+<div id="app">
+    <div>
+        <label>
+            <input type="checkbox" v-model="reserve">予約する
+        </label>
+    </div>
+    <!-- v-ifは要素そのものを消す, v-showはdisplay:none -->
+    <!-- 頻繁に表示、非表示が切り替わる場合は、v-show -->
+    <!-- 表示・非表示の切替えが殆ど発生しない場合は、v-if -->
+    <!-- v-ifでDOM要素の削除・作成によって表示・非表示を切り替える方がレンダリングのコストが高い -->
+    <!-- v-showはスタイルの切替えだけなので、レンダリングのコストが低い -->
+    <!-- <div v-show="reserve"> -->
+    <div v-if="reserve"> 
+        予約日：<input type="date">
+    </div>
+</div>
+</html>
+<script src="main.js"></script>

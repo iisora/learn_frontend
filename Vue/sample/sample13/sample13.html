@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<title>Vue.jsの学習</title>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+<link rel="stylesheet" href="style.css">
+
+<div id="app">
+  <div>
+    <label>
+      <span>名前：</span>
+      <!-- v-modelによって双方向バインディングを実現している -->
+      <input v-model="name">    
+    </label>
+  </div>
+  <div>
+    <label>
+      <span>メールアドレス：</span>
+      <input v-model="email">    
+    </label>
+  </div>
+  <div>
+    <label>
+      <span>お問合せ内容：</span>
+      <textarea v-model="text" rows="5"></textarea>
+    </label>
+  </div>
+  <button @click="submit">送信</button>
+</div>
+
+</html>
+<script src="main.js"></script>

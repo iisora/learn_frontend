@@ -1,0 +1,12 @@
+#app > div {
+  margin: 12px 0;
+}
+
+label > span {
+  display: inline-block;
+  min-width: 130px;
+}
+
+textarea {
+  width: 250px;
+}
