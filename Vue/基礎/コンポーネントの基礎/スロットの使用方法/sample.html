@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<script src="https://unpkg.com/vue@2.5.21"></script>
+
+<div id="app">
+  <!-- layoutタグでlayoutコンポーネントを呼び出す-->
+  <layout>
+    <!-- templateはvue.jsで使用されるダミーの要素、thymeleafでいうth:block的な？ -->
+    <!-- header slotにこの箇所がレンダリングされる -->
+    <template slot="header"> Header </template>
+    Main コンテンツ
+    <!-- templateタグと違い、span要素全体がfooter slotに差し込まれる -->
+    <span slot="footer"> Footer </span>
+  </layout>
+</div>
+<script src="main.js"></script>
