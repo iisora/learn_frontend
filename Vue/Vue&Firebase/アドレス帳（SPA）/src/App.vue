@@ -1,28 +1,68 @@
 <template>
   <v-app>
-    <v-app-bar>
-      <!-- v-showでログイン状態でしか表示しないように制御 -->
-      <v-app-bar-nav-icon
-        v-show="$store.state.login_user"
-        @click.stop="toggleSideMenu"
+    <v-card class="overflow-hidden">
+      <v-app-bar
+        :collapse="!collapseOnScroll"
+        :collapse-on-scroll="collapseOnScroll"
+        absolute
+        color="#fcb69f"
+        prominent
+        src="./images/image1.jpeg"
+        dark
+        dense
+        shrink-on-scroll
+        elevate-on-scroll
+        scroll-target="#scrolling-techniques-6"
       >
-      </v-app-bar-nav-icon>
-      <v-toolbar-title>
-        <span>マイアドレス帳</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <!-- ログインユーザーが存在する場合のみ、ボタンを表示する -->
-      <v-toolbar-items v-if="$store.state.login_user">
-        <v-btn text @click="logout">ログアウト</v-btn>
-      </v-toolbar-items>
-    </v-app-bar>
-    <SideNav />
+        <!-- v-showでログイン状態でしか表示しないように制御 -->
+        <v-app-bar-nav-icon
+          v-show="$store.state.login_user"
+          @click.stop="toggleSideMenu"
+        >
+        </v-app-bar-nav-icon>
+        <v-toolbar-title>
+          <span>マイアドレス帳</span>
+        </v-toolbar-title>
+        <v-spacer></v-spacer>
+        <!-- ログインユーザーが存在する場合のみ、ボタンを表示する -->
+        <v-toolbar-items v-if="$store.state.login_user">
+          <v-btn text @click="logout">ログアウト</v-btn>
+        </v-toolbar-items>
 
-    <v-content>
-      <v-container fluid fill-height align-start>
-        <router-view />
-      </v-container>
-    </v-content>
+        <template v-slot:extension>
+          <!-- <v-tabs align-with-title>
+          <v-tab>Tab 1</v-tab>
+          <v-tab>Tab 2</v-tab>
+          <v-tab>Tab 3</v-tab>
+        </v-tabs> -->
+          <v-tabs v-model="tab" align-with-title>
+            <v-tabs-slider color="yellow"></v-tabs-slider>
+            <v-tab v-for="(menuItem, index) in menuItems" :key="index">
+              {{ menuItem }}
+            </v-tab>
+          </v-tabs>
+        </template>
+        <v-checkbox
+          v-model="collapseOnScroll"
+          color="white"
+          hide-details
+        ></v-checkbox>
+      </v-app-bar>
+      <SideNav />
+
+      <v-content>
+        <v-sheet
+          id="scrolling-techniques-6"
+          class="overflow-y-auto"
+          max-height="1000"
+        >
+          <!-- <v-container fluid fill-height align-start> -->
+          <v-container style="height: 1500px;">
+            <router-view />
+          </v-container>
+        </v-sheet>
+      </v-content>
+    </v-card>
   </v-app>
 </template>
 
@@ -53,9 +93,22 @@ export default {
       }
     });
   },
+  // data() {
+  //   return {
+  //     //
+  //   };
+  // },
   data() {
     return {
-      //
+      collapseOnScroll: true,
+      tab: null,
+      menuItems: [
+        "ホーム",
+        "連絡先一覧",
+        "TODO",
+        "このサイトについて",
+        "メール送信",
+      ],
     };
   },
   methods: {

@@ -16,10 +16,14 @@
       <v-flex xs12 mt-3 justify-center>
         <v-data-table :headers="headers" :items="addresses">
           <template v-slot:item.action="{ item }">
-             <router-link :to="{ name: 'address_edit', params: { address_id: item.id }}">
-               <v-icon small class="mr-2">mdi-pencil</v-icon>
-             </router-link>
-             <v-icon small class="mr-2" @click="deleteConfirm(item.id)">mdi-delete</v-icon>
+            <router-link
+              :to="{ name: 'address_edit', params: { address_id: item.id } }"
+            >
+              <v-icon small class="mr-2">mdi-pencil</v-icon>
+            </router-link>
+            <v-icon small class="mr-2" @click="deleteConfirm(item.id)"
+              >mdi-delete</v-icon
+            >
           </template>
         </v-data-table>
       </v-flex>
