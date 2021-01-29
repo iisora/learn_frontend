@@ -1,7 +1,7 @@
 <template>
   <v-container text-xs-center>
     <v-layout row wrap justify-center>
-      <v-flex xs12>
+      <v-flex xs12 class="text-center">
         <h1>連絡先編集</h1>
       </v-flex>
 
@@ -22,11 +22,13 @@
                 v-model="address.address"
                 label="住所"
               ></v-text-field>
-              <!-- ルート名で遷移先を指定 -->
-              <v-btn @click="$router.push({ name: 'addresses' })"
-                >キャンセル</v-btn
-              >
-              <v-btn color="info" @click="submit">保存</v-btn>
+              <div class="text-center">
+                <!-- ルート名で遷移先を指定 -->
+                <v-btn @click="$router.push({ name: 'addresses' })"
+                  >キャンセル</v-btn
+                >
+                <v-btn color="info" class="ml-2" @click="submit">保存</v-btn>
+              </div>
             </v-form>
           </v-card-text>
         </v-card>
@@ -39,18 +41,20 @@
 // コンポーネントのmethodsにストアのアクションメソッドを組み込む役割
 import { mapActions } from "vuex";
 export default {
-  created () {
+  created() {
     // routeのパラメータにaddress_idが含まれているかチェック($route.paramsでパスに含まれているパラメータにアクセス)
-      if (!this.$route.params.address_id) return
+    if (!this.$route.params.address_id) return;
 
-      // 引数にaddress_idwp渡すことで該当する連絡先を取得する
-      const address = this.$store.getters.getAddressById(this.$route.params.address_id)
-      if (address) {
-          this.address = address
-      } else {
-        // 取得できなかった場合は一覧に遷移する
-          this.$router.push({ name: 'addresses'})
-      }
+    // 引数にaddress_idwp渡すことで該当する連絡先を取得する
+    const address = this.$store.getters.getAddressById(
+      this.$route.params.address_id
+    );
+    if (address) {
+      this.address = address;
+    } else {
+      // 取得できなかった場合は一覧に遷移する
+      this.$router.push({ name: "addresses" });
+    }
   },
   data() {
     return {
@@ -58,9 +62,13 @@ export default {
     };
   },
   methods: {
-    submit() { //新規追加と更新処理を分ける
+    submit() {
+      //新規追加と更新処理を分ける
       if (this.$route.params.address_id) {
-        this.updateAddress({ id: this.$route.params.address_id, address: this.address })
+        this.updateAddress({
+          id: this.$route.params.address_id,
+          address: this.address,
+        });
       } else {
         this.addAddress(this.address);
       }

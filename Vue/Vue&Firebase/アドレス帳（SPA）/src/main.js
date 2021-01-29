@@ -1,9 +1,12 @@
 import Vue from "vue";
 import "./plugins/vuetify";
+// import vuetify from "./plugins/vuetify";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-import firebase from "firebase";
+// import firebase from "firebase";
+import firebase from "firebase/app";
+import vuetify from "@/plugins/vuetify";
 
 Vue.config.productionTip = false;
 
@@ -22,8 +25,17 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 // firebase.analytics();
 
+// Vue.use(vuetify, {
+//   icons: {
+//     iconfont: 'mdi'
+//   }
+// });
+
+// Vue.use(vuetify);
+
 new Vue({
   router,
   store,
+  vuetify,
   render: (h) => h(App),
 }).$mount("#app");

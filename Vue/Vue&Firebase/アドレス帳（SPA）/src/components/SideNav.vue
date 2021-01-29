@@ -1,45 +1,28 @@
 <template>
-  <!-- <v-layout wrap style="height: 200px;"> -->
-  <!-- Toggleボタン -->
-  <!-- <v-container>
-      <v-layout justify-center>
-        <v-btn color="pink" dark @click.stop="drawer = !drawer">Toggle</v-btn>
-      </v-layout>
-    </v-container> -->
-  <!--デフォルトで左に隠れているメニューの部分-->
-  <!-- <v-navigation-drawer v-model="drawer" absolute temporary> -->
-  <!-- テンプレートから$storeでストアにアクセスできる -->
   <v-navigation-drawer v-model="$store.state.drawer" absolute temporary>
-    <v-list class="pa-1">
-      <v-list-tile avatar>
-        <v-list-tile-avatar>
-          <!-- <img src="../images/image1.jpeg" /> -->
+    <v-list>
+      <v-list-item>
+        <v-list-item-avatar>
           <img v-if="photoURL" :src="photoURL" />
-        </v-list-tile-avatar>
+        </v-list-item-avatar>
+        <v-list-item-content>
+          <v-list-item-title>{{ userName }}</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
 
-        <v-list-tile-content>
-          <!-- <v-list-tile-title>iisora</v-list-tile-title> -->
-          <v-list-tile-title>{{ userName }}</v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
-    </v-list>
-
-    <v-list class="pt-0" dense>
       <v-divider></v-divider>
 
-      <v-list-tile v-for="item in items" :key="item.title" :to="item.link">
-        <v-list-tile-action>
-          <!-- 他にどんなアイコンが使用できるかは、Material IOで確認(ここではlist) -->
+      <v-list-item v-for="(item, index) in items" :key="index" :to="item.link">
+        <v-list-item-icon>
           <v-icon>{{ item.icon }}</v-icon>
-        </v-list-tile-action>
+        </v-list-item-icon>
 
-        <v-list-tile-content>
-          <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
+        <v-list-item-content>
+          <v-list-item-title>{{ item.title }}</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
     </v-list>
   </v-navigation-drawer>
-  <!-- </v-layout> -->
 </template>
 
 <script>
@@ -52,8 +35,28 @@ export default {
       //   drawer: false,
       //メニューの情報
       items: [
-        // { title: "ホーム", icon: "home", link: { name: "home" } },
-        { title: "連絡先一覧", icon: "list", link: { name: "addresses" } },
+        // routerで指定したnameの値に紐づいている
+        { title: "ホーム", icon: "mdi-home", link: { name: "Home" } },
+        {
+          title: "連絡先一覧",
+          icon: "mdi-menu",
+          link: { name: "addresses" },
+        },
+        {
+          title: "TODO",
+          icon: "flutter_dash",
+          link: { name: "Todo" },
+        },
+        {
+          title: "このサイトについて",
+          icon: "airplay",
+          link: { name: "About" },
+        },
+        {
+          title: "メール送信",
+          icon: "email,",
+          link: { name: "About" },
+        },
       ],
     };
   },

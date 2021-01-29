@@ -1,27 +1,27 @@
 <template>
   <v-app>
-    <v-toolbar app>
-      <!-- <v-toolbar-side-icon @click="openSideMenu"> -->
+    <v-app-bar>
       <!-- v-showでログイン状態でしか表示しないように制御 -->
-      <v-toolbar-side-icon
+      <v-app-bar-nav-icon
         v-show="$store.state.login_user"
         @click.stop="toggleSideMenu"
       >
-      </v-toolbar-side-icon>
-      <v-toolbar-title class="headline text-uppercase">
+      </v-app-bar-nav-icon>
+      <v-toolbar-title>
         <span>マイアドレス帳</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <!-- ログインユーザーが存在する場合のみ、ボタンを表示する -->
       <v-toolbar-items v-if="$store.state.login_user">
-        <v-btn @click="logout">ログアウト</v-btn>
+        <v-btn text @click="logout">ログアウト</v-btn>
       </v-toolbar-items>
-    </v-toolbar>
+    </v-app-bar>
     <SideNav />
 
     <v-content>
-      <!-- この一行でルート毎に設定したコンポーネントが表示されるようになる -->
-      <router-view />
+      <v-container fluid fill-height align-start>
+        <router-view />
+      </v-container>
     </v-content>
   </v-app>
 </template>
@@ -44,12 +44,12 @@ export default {
         this.setLoginUser(user);
         this.fetchAddresses();
         // ユーザーがログインして、現在のページがホームだった場合に連絡先一覧に遷移させる
-        if (this.$router.currentRoute.name === "home")
+        if (this.$router.currentRoute.name === "Home")
           this.$router.push({ name: "addresses" });
       } else {
         this.deleteLoginUser();
         // 単純にpushメソッドでホーム画面に移動させているだけ
-        this.$router.push({ name: "home" });
+        this.$router.push({ name: "Home" }, () => {});
       }
     });
   },
