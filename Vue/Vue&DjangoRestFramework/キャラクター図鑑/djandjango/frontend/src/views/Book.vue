@@ -1,0 +1,93 @@
+<template>
+    <div>
+        <v-container>
+            <v-row class="book-contents">
+                <v-col md="4" class="book-contents-img">
+                    <v-img 
+                    src="../assets/img/sample.jpg"
+                    class="img-fluid"
+                    max-width="400"
+                    max-height="400"
+                    ></v-img>
+                </v-col>
+                <v-col md="8" class="book-contents-text">
+                    <h2 class="mb-5">{{ book.name }}</h2>
+                    <p>身長: {{ book.height }}</p>
+                    <p>体重: {{ book.weight }}</p>
+                    <p>出身地: {{ book.Habitat }}</p>
+                    <p>職業: {{ book.job }}</p>
+                    <p>概要: {{ book.description }}</p>
+                    <v-btn
+                        color="success"
+                        class="mr-2"
+                        :to="{name: 'editor', params: { id: book.id } }"
+                    >編集
+                    </v-btn>
+                    <v-btn
+                        color="error"
+                        @click="deleteBookData"
+                    >削除
+                    </v-btn>
+                </v-col>
+            </v-row>
+        </v-container>
+    </div>
+</template>
+
+<script>
+import { apiService } from '../common/api.service';
+
+export default {
+    name: 'book',
+    props: {
+        id: {
+            type: Number,
+            required: true
+        }
+    },
+    data() {
+        return {
+            book: {}
+        }
+    },
+    methods: {
+        setPageTitle(title) {
+            document.title = title;
+        },
+        getBookData() {
+            let endpoint = `/api/books/${this.id}/`;
+            apiService(endpoint).then(data => {
+                this.book = data;
+                console.log("book", this.book);
+                this.setPageTitle(data.name);
+            })
+        },
+        deleteBookData() {
+            let endpoint = `/api/books/${this.id}/`;
+            apiService(endpoint, "DELETE").then(() => {
+                this.$router.push({
+                    name: "home"
+                })
+            })
+        }
+    },
+    created() {
+        this.getBookData();
+    }
+}
+</script>
+
+<style scoped lang="scss">
+.book-contents {
+  margin-top: 20px;
+  justify-content: center;
+  
+  &-img {
+    text-align: center;
+  }
+
+  &-text {
+    word-wrap: break-word;
+  }
+}
+</style>
