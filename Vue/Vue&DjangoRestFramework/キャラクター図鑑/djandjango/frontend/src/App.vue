@@ -5,7 +5,7 @@
       <v-spacer></v-spacer>
       <v-toolbar-items>
         <v-btn text to="/">ホーム</v-btn>
-        <v-btn text to="/editor">図鑑追加</v-btn>
+        <v-btn text to="/editor">図鑑追加</v-btn> 
       </v-toolbar-items>
     </v-app-bar>
 
