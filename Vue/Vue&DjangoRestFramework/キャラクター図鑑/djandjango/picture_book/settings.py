@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'boooks',
-    'webpack_loader'
+    'webpack_loader',
+    'django_cleanup' 
 ]
 
 MIDDLEWARE = [
@@ -132,4 +133,14 @@ WEBPACK_LOADER = {
         'BUNDLE_DIR_NAME': 'dist/',
         'STATS_FILE': os.path.join(BASE_DIR, 'frontend', 'webpack-stats.json')
     }
+}
+
+MEDIA_URL = '/media/'
+# フォルダは自動生成してくれる
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
 }

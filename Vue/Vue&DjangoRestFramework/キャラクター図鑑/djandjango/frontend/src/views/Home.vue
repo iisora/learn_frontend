@@ -2,10 +2,7 @@
   <div>
     <v-container>
       <h1>Picture book</h1>
-      <!-- <v-row class="home-col-contents"> -->
-        <!-- <v-col md="3" class="home-col-contents-img">
-        </v-col> -->
-        <!-- <v-col md="9" class="home-col-contents-text"> -->
+        <div v-if="books.length" >
           <div v-for="book in books" :key="book.pk">
             <h2>
               <router-link
@@ -26,8 +23,10 @@
             >再度読み込み
             </v-btn>
           </div>
-        <!-- </v-col> -->
-      <!-- </v-row> -->
+        </div>
+        <div v-else>
+          <p>データが存在しません</p>
+        </div>
     </v-container>
   </div>
 </template>
@@ -45,13 +44,13 @@ export default {
   },
   methods: {
     getBooks() {
-      let endpoint = `/api/books/`;
+      let endpoint = `/api/book_list/`;
       if(this.next) {
         endpoint = this.next;
       }
       this.loadingBooks = true;
       apiService(endpoint).then(data => {
-        this.books.push(...data);
+        this.books.push(...data.results);
         this.loadingBooks = false;
         if (data.next) {
           this.next = data.next;

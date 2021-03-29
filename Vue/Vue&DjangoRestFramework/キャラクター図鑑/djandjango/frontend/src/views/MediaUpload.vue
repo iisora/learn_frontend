@@ -1,17 +1,23 @@
 <template>
   <v-container>
-    <v-file-input
+    <!-- <v-file-input
       ref="fileInput"
       label="画像"
       accept="image/*"
       :clearable="clearable"
       @click="clearFileName"
       @change="inputFile"
-    ></v-file-input>
-    <div>
-      <img :src="previewSrc" alt="" width="300" />
+    ></v-file-input> -->
+    <input v-if="view" type="file" @change="inputFile"  @click="clearFileName" class="mb-4">
+    <div v-if="previewSrc">
+      <img :src="previewSrc" class="img-fluid" width="300" />
     </div>
-    <v-btn @click="clearFile">Clear File</v-btn>
+    <div v-else>
+      <img :src="crrentPreviewSrc" class="img-fluid" width="300" />
+    </div>
+    <div v-if="previewSrc">
+      <v-btn @click="clearFile">Clear File</v-btn>
+    </div>
     <!-- <v-btn large color="primary" @click="sendForm">Post</v-btn> -->
   </v-container>
 </template>
@@ -24,33 +30,55 @@ export default {
   data() {
     return {
       file: null,
-      fileName: '',
+      // fileName: '',
       previewSrc: '',
-      clearable: true,
+      // clearable: true,
+      crrentPreviewSrc: '',
+      view: true
     };
   },
   methods: {
-    inputFile: function(e) {
-      reader.onload = e => {
-        this.previewSrc = e.target.result;
-      };
-      console.log("e", e);
-      reader.readAsDataURL(e);
-      this.file = e;
-      this.fileName = e.name;
-      /** 
-      v-on:change で取得出来る event から File を取得し、
-      FormData を利用してファイルを POST する
-      **/
-      // TODO: this.fileをemitして、親コンポーネントでfileDataを利用してPOSTする
-      console.log("emit this file", this.file);
+    // inputFile: function(e) {
+    //   reader.onload = e => {
+    //     this.previewSrc = e.target.result;
+    //   };
+    //   console.log("e", e);
+    //   reader.readAsDataURL(e);
+    //   this.file = e;
+    //   this.fileName = e.name;
+    //   /** 
+    //   v-on:change で取得出来る event から File を取得し、
+    //   FormData を利用してファイルを POST する
+    //   **/
+    //   // TODO: this.fileをemitして、親コンポーネントでfileDataを利用してPOSTする
+    //   console.log("emit this file", this.file);
+    //   this.$emit("file", this.file);
+    // },
+    inputFile (e) {
+      const files = e.target.files || e.dataTransfer.files
+      if (!files.length) {
+        return
+      }
+      this.file = files[0]
+      this.createImage(this.file)
+    },
+    createImage (file) {
+      reader.onload = (e) => {
+        this.previewSrc = e.target.result
+      }
+      reader.readAsDataURL(file)
       this.$emit("file", this.file);
     },
     clearFile: function() {
       this.file = null;
-      this.fileName = '';
+      // this.fileName = '';
       this.previewSrc = '';
-      this.$refs.fileInput.lazyValue = '';
+      // this.$refs.fileInput.lazyValue = '';
+      this.view = false
+      this.$nextTick(function () {
+        this.view = true
+      })
+      this.$emit("file", this.file);
     },
     clearFileName: function(e) {
       e.target.value = '';
@@ -70,5 +98,14 @@ export default {
     //   });
     // },
   },
+  created() {
+    console.log("this.src", this.src);
+    if (this.src === undefined) {
+      // require()つけないと、うまく画像ファイルを読み込んでくれない
+      this.crrentPreviewSrc = require('@/assets/img/sample.jpg');
+    } else {
+      this.crrentPreviewSrc = this.src;
+    } 
+  }
 };
 </script>

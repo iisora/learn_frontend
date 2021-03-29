@@ -14,10 +14,21 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
+from django.conf import settings
+from django.views.static import serve
+# from rest_framework.routers import DefaultRouter
+# from boooks.api.views import CardViewSet
+# from boooks.api import views
+
+# router = DefaultRouter()
+# router.register('card', CardViewSet, basename='card')
+# router.register('books', views.ListView, basename='list')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('boooks.api.urls')),
-    path('', include('boooks.urls'))
+    # path('api/', include(router.urls)),
+    path('', include('boooks.urls')),
+    re_path('media/(?P<path>.*)', serve, {'document_root': settings.MEDIA_ROOT}),
 ]
