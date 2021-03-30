@@ -6,6 +6,7 @@
                     v-model="name"
                     label="名前"
                     required
+                    dark
                 >
                 </v-text-field>
                 <v-text-field
@@ -13,6 +14,7 @@
                     v-model="height"
                     label="身長(cm)"
                     required
+                    dark
                 >
                 </v-text-field>
                 <v-text-field
@@ -20,24 +22,28 @@
                     v-model="weight"
                     label="体重(kg)"
                     required
+                    dark
                 >
                 </v-text-field>
                 <v-text-field
                     v-model="Habitat"
                     label="出身地"
                     required
+                    dark
                 >
                 </v-text-field>
                 <v-text-field
                     v-model="job"
                     label="職業"
                     required
+                    dark
                 >
                 </v-text-field>
                 <v-text-field
                     v-model="description"
                     label="概要"
                     required
+                    dark
                 >
                 </v-text-field>
                 <!-- 受け取った値をそのまま使う場合は$eventで受け取る -->

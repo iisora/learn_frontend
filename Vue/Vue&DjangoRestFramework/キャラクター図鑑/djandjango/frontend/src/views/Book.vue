@@ -1,8 +1,8 @@
 <template>
     <div>
-        <v-container>
-            <v-row class="book-contents">
-                <v-col md="4" class="book-contents-img">
+        <v-container fill-height>
+            <v-row class="book-contents" align="center">
+                <v-col md="4" class="book-contents-img mb-16">
                     <v-img 
                     :src="imgSrc"
                     class="img-fluid"
@@ -30,6 +30,9 @@
                     </v-btn>
                 </v-col>
             </v-row>
+            <v-row class="mb-16"></v-row>
+            <v-row class="mb-16"></v-row>
+            <v-row class="mb-7"></v-row>
         </v-container>
     </div>
 </template>

@@ -9,14 +9,19 @@
       </v-toolbar-items>
     </v-app-bar>
 
+    <!--/* v-content要素の中のコンテンツはサイドメニューの動作に連動する */-->
     <v-content>
-      <router-view />
+      <v-parallax
+        dark
+        src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
+        height="all"
+      >
+        <router-view />
+      </v-parallax>
     </v-content>
 
-    <!-- <v-footer color="success" app dark class="justify-center">
-      ©Copyright 2021 sample
-    </v-footer> -->
     <Footer />
+
   </v-app>
 </template>
 

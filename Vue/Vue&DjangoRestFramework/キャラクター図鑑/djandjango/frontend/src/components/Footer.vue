@@ -36,6 +36,7 @@
 <script>
   export default {
     data: () => ({
+      /* npm install --save @mdi/font */
       icons: [
         'mdi-facebook',
         'mdi-twitter',

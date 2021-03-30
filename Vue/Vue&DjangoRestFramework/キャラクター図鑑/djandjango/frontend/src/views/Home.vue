@@ -12,15 +12,18 @@
             @end="draggableEnd"
             :sort="true"
           >
+            <!--/* v-layoutのwrap属性で同じことができそう */-->
             <v-col
               v-for="(book, index) in books" 
               :key="index"
             >
               <v-hover v-slot:default="{ hover }">
               <v-card
-                  :elevation="hover ? 12 : 2"
+                  :elevation="hover ? 16 : 2"
+                  :class="{ 'on-hover': hover }"
                   class="mx-auto picture_card"
                   max-width="250"
+                  dark
               >
                 <v-img
                   :src="card_img[index]"
@@ -84,7 +87,7 @@ export default {
       books: [],
       next: null,
       loadingBooks: false,
-      card_img: []
+      card_img: [],
     }
   },
   methods: {
