@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar color="success" app dark>
+    <v-app-bar color="success lighten-1" app dark>
       <v-toolbar-title>図鑑</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
@@ -13,10 +13,22 @@
       <router-view />
     </v-content>
 
-    <v-footer color="success" app dark class="justify-center">
+    <!-- <v-footer color="success" app dark class="justify-center">
       ©Copyright 2021 sample
-    </v-footer>
+    </v-footer> -->
+    <Footer />
   </v-app>
 </template>
+
+<script>
+import Footer from './components/Footer';
+
+export default {
+  components: {
+     Footer
+  },
+}
+</script>
+
 
 

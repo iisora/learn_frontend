@@ -25,7 +25,7 @@ class ListView(generics.ListCreateAPIView):
     serializer_class = CharactersSerializer
 
 class BookListView(generics.ListCreateAPIView):
-    queryset = Books.objects.all().order_by('-id')
+    queryset = Books.objects.all()
     serializer_class = BooksSerializer
 
 # class ListView(viewsets.ViewSet):

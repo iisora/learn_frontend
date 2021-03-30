@@ -11,14 +11,14 @@
                 <v-text-field
                     type="number"
                     v-model="height"
-                    label="身長"
+                    label="身長(cm)"
                     required
                 >
                 </v-text-field>
                 <v-text-field
                     type="number"
                     v-model="weight"
-                    label="体重"
+                    label="体重(kg)"
                     required
                 >
                 </v-text-field>
@@ -170,6 +170,7 @@ export default {
                     return { error };
                 });
             }
+            this.file = null;
         },
     },
     async beforeRouteEnter (to, from, next) {
